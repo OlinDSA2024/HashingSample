@@ -2,6 +2,8 @@ package org.example
 
 /**
  * Represents a mapping of keys to values.
+ * @param K the type of the keys
+ * @param V the type of the values
  */
 class AssociativeArray<K, V> {
     private var n = 0
