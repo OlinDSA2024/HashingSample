@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2828971c-2122-4135-82af-efde18baecc1" name="Changes" comment="Cleaned up the code">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/BinaryUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/BinaryUtils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/LZAlgorithm.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LZAlgorithm.kt" afterDir="false" />
+    <list default="true" id="2828971c-2122-4135-82af-efde18baecc1" name="Changes" comment="Added the decompression step">
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +88,7 @@
       <workItem from="1711572859523" duration="10865000" />
       <workItem from="1711637902157" duration="1809000" />
       <workItem from="1711646112058" duration="4274000" />
-      <workItem from="1711650406540" duration="1050000" />
+      <workItem from="1711650406540" duration="1147000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -134,7 +130,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711634598018</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added the decompression step">
+      <option name="closed" value="true" />
+      <created>1711651518458</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711651518459</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,7 +159,8 @@
     <MESSAGE value="First commit" />
     <MESSAGE value="Added params to associative array" />
     <MESSAGE value="Cleaned up the code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up the code" />
+    <MESSAGE value="Added the decompression step" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the decompression step" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
