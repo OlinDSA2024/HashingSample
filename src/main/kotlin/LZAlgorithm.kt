@@ -5,11 +5,33 @@ import java.io.IOException
 
 class LZAlgorithm {
     companion object {
-        fun encode(bytes: ByteArray, encodeABBinary: Boolean=false): ByteArray {
+        /**
+         * Use LZ compression to represent the input bytes as a string
+         *   of 1's and 0's (one byte per binary digit)
+         * @param bytes the data to encode
+         * @param encodeABBinary true if A should map to 0 and B map 1
+         */
+        fun encodeAsBinaryString(bytes: ByteArray, encodeABBinary: Boolean=false): String? {
+            return compressionHelper(bytes, encodeABBinary, keepTrackOfBinaryString = true).toBinaryString()
+        }
+
+        /**
+         * Use LZ compression to represent the input bytes as a ByteArray
+         *   of 1's and 0's (one byte per binary digit)
+         * @param bytes the data to encode
+         * @param encodeABBinary true if A should map to 0 and B map 1
+         */
+        fun encodeAsByteArray(bytes: ByteArray, encodeABBinary: Boolean=false): ByteArray {
+            return compressionHelper(bytes, encodeABBinary).toByteArray()
+        }
+
+        private fun compressionHelper(bytes: ByteArray,
+                                      encodeABBinary: Boolean=false,
+                                      keepTrackOfBinaryString: Boolean = false): BinaryWriter {
             val codeBook = AssociativeArray<List<Byte>, Int>()
             // encode the empty string
             codeBook[listOf()] = codeBook.size()
-            val encodedData = BinaryStdOut(keepTrackOfBinaryString = true)
+            val encodedData = BinaryWriter(keepTrackOfBinaryString)
             var startPos = 0
             var codeWidth = 1
             var transition = 2
@@ -23,9 +45,9 @@ class LZAlgorithm {
                         if (listOf(bytes[i]).toByteArray()
                                 .decodeToString() == "A"
                         ) {
-                            encodedData.writeBit(false)
+                            encodedData.write(false)
                         } else {
-                            encodedData.writeBit(true)
+                            encodedData.write(true)
                         }
                     } else {
                         encodedData.write(bytes[i])
@@ -40,8 +62,7 @@ class LZAlgorithm {
             }
             val currSequence = bytes.slice(startPos until bytes.size)
             encodedData.write(codeBook[currSequence]!!, codeWidth)
-            //encodedData.toBinaryString()
-            return encodedData.toByteArray()
+            return encodedData
         }
     }
 }

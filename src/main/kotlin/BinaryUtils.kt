@@ -5,27 +5,26 @@ import java.io.IOException
 
 
 /**
- *  The <code>BinaryStdOut</code> class provides methods for converting
+ *  The <code>BinaryWriter</code> class provides methods for converting
  *  primitive type variables ({@code boolean}, {@code byte}, {@code char},
  *  {@code int}, {@code long}, {@code float}, and {@code double})
- *  to sequences of bits and writing them to standard output.
+ *  to sequences of bits and writing them to byte array.
  *  Uses big-endian (most-significant byte first).
  *  <p>
- *  The client must {@code flush()} the output stream when finished writing bits.
- *  Adapted from code by:
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
+ *  (modifications by Paul Ruvolo)
  */
-class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
+class BinaryWriter(val keepTrackOfBinaryString: Boolean=false) {
     private var out = ByteArrayOutputStream()
     private var binaryStringOut = ByteArrayOutputStream()
     private var buffer = 0 // 8-bit buffer of bits to write
     private var n = 0 // number of bits remaining in buffer
 
     /**
-     * Writes the specified bit to standard output.
+     * Writes the specified bit to the output.
      */
-    fun writeBit(bit: Boolean) {
+    private fun writeBit(bit: Boolean) {
         if (keepTrackOfBinaryString) {
             if (bit) {
                 binaryStringOut.write("1".toByteArray())
@@ -44,7 +43,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
     }
 
     /**
-     * Writes the 8-bit byte to standard output.
+     * Writes the 8-bit byte to the output.
      */
     private fun writeByte(x: Int) {
         assert(x in 0..255)
@@ -65,7 +64,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
         }
     }
 
-    // write out any remaining bits in buffer to standard output, padding with 0s
+    // write out any remaining bits in buffer to the output, padding with 0s
     private fun clearBuffer() {
         if (n == 0) return
         if (n > 0) buffer = buffer shl (8 - n)
@@ -82,7 +81,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
      * Flushes standard output, padding 0s if number of bits written so far
      * is not a multiple of 8.
      */
-    fun flush() {
+    private fun flush() {
         clearBuffer()
         try {
             out.flush()
@@ -93,7 +92,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
 
 
     /**
-     * Writes the specified bit to standard output.
+     * Writes the specified bit to the output.
      * @param x the `boolean` to write.
      */
     fun write(x: Boolean) {
@@ -101,7 +100,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
     }
 
     /**
-     * Writes the 8-bit byte to standard output.
+     * Writes the 8-bit byte to the output.
      * @param x the `byte` to write.
      */
     fun write(x: Byte) {
@@ -109,7 +108,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
     }
 
     /**
-     * Writes the 32-bit int to standard output.
+     * Writes the 32-bit int to the output.
      * @param x the `int` to write.
      */
     fun write(x: Int) {
@@ -120,7 +119,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
     }
 
     /**
-     * Writes the *r*-bit int to standard output.
+     * Writes the *r*-bit int to the output.
      * @param x the `int` to write.
      * @param r the number of relevant bits in the char.
      * @throws IllegalArgumentException if `r` is not between 1 and 32.
@@ -141,7 +140,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
 
 
     /**
-     * Writes the 64-bit double to standard output.
+     * Writes the 64-bit double to the output.
      * @param x the `double` to write.
      */
     fun write(x: Double) {
@@ -149,7 +148,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
     }
 
     /**
-     * Writes the 64-bit long to standard output.
+     * Writes the 64-bit long to the output.
      * @param x the `long` to write.
      */
     fun write(x: Long) {
@@ -164,7 +163,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
     }
 
     /**
-     * Writes the 32-bit float to standard output.
+     * Writes the 32-bit float to the output.
      * @param x the `float` to write.
      */
     fun write(x: Float) {
@@ -172,7 +171,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
     }
 
     /**
-     * Writes the 16-bit int to standard output.
+     * Writes the 16-bit int to the output.
      * @param x the `short` to write.
      */
     fun write(x: Short) {
@@ -181,7 +180,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
     }
 
     /**
-     * Writes the 8-bit char to standard output.
+     * Writes the 8-bit char to the output.
      * @param x the `char` to write.
      * @throws IllegalArgumentException if `x` is not between 0 and 255.
      */
@@ -191,7 +190,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
     }
 
     /**
-     * Writes the *r*-bit char to standard output.
+     * Writes the *r*-bit char to the output.
      * @param x the `char` to write.
      * @param r the number of relevant bits in the char.
      * @throws IllegalArgumentException if `r` is not between 1 and 16.
@@ -211,7 +210,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
     }
 
     /**
-     * Writes the string of 8-bit characters to standard output.
+     * Writes the string of 8-bit characters to the output.
      * @param s the `String` to write.
      * @throws IllegalArgumentException if any character in the string is not
      * between 0 and 255.
@@ -221,7 +220,7 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
     }
 
     /**
-     * Writes the string of *r*-bit characters to standard output.
+     * Writes the string of *r*-bit characters to the output.
      * @param s the `String` to write.
      * @param r the number of relevant bits in each character.
      * @throws IllegalArgumentException if r is not between 1 and 16.
@@ -233,15 +232,20 @@ class BinaryStdOut(val keepTrackOfBinaryString: Boolean=false) {
     }
 
     /**
-     * @return the stream as a byte array
+     * @return the output as a byte array
      */
     fun toByteArray(): ByteArray {
         return out.toByteArray()
     }
 
-    fun toBinaryString():ByteArray? {
+    /**
+     * @return the output as a binary string.  If the writer
+     *   was not setup with [keepTrackOfBinaryString] as true,
+     *   this function returns null.
+     */
+    fun toBinaryString():String? {
         return if (keepTrackOfBinaryString) {
-            binaryStringOut.toByteArray()
+            binaryStringOut.toByteArray().decodeToString()
         } else {
             null
         }

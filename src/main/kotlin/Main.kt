@@ -13,9 +13,9 @@ fun main() {
     for (i in 0 until 300000) {
         q[i] = 2*i
     }
-    val encoded = LZAlgorithm.encode("AABABBBABAABAAAAAAAAAAAAAAAAAAABBBABBABB".toByteArray(), encodeABBinary = true)
-    println(encoded)
+    val compressed = LZAlgorithm.encodeAsBinaryString("AABABBBABAABABBBABBABB".toByteArray(), encodeABBinary = true)
+    println("binary string: $compressed")
     val text = File("src/main/kotlin/book").readText(Charsets.UTF_8)
-    val encoded2 = LZAlgorithm.encode(text.toByteArray())
+    val encoded2 = LZAlgorithm.encodeAsByteArray(text.toByteArray())
     print("Compression ratio: ${1 - encoded2.size.toDouble() / text.length}")
 }
