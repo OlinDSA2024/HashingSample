@@ -5,8 +5,7 @@ import java.io.IOException
 
 class LZAlgorithm {
     companion object {
-        fun encode(bytes: ByteArray): ByteArray {
-            val encodeABBinary = true
+        fun encode(bytes: ByteArray, encodeABBinary: Boolean=false): ByteArray {
             val codeBook = AssociativeArray<List<Byte>, Int>()
             // encode the empty string
             codeBook[listOf()] = codeBook.size()
