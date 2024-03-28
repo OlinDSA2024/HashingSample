@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2828971c-2122-4135-82af-efde18baecc1" name="Changes" comment="Added params to associative array">
+    <list default="true" id="2828971c-2122-4135-82af-efde18baecc1" name="Changes" comment="Cleaned up the code">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/BinaryUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/BinaryUtils.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/LZAlgorithm.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LZAlgorithm.kt" afterDir="false" />
@@ -89,6 +90,9 @@
       <updated>1711331570451</updated>
       <workItem from="1711331572082" duration="6049000" />
       <workItem from="1711572859523" duration="10865000" />
+      <workItem from="1711637902157" duration="1809000" />
+      <workItem from="1711646112058" duration="4274000" />
+      <workItem from="1711650406540" duration="1050000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -122,15 +126,51 @@
       <option name="project" value="LOCAL" />
       <updated>1711602186726</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Cleaned up the code">
+      <option name="closed" value="true" />
+      <created>1711634598018</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711634598018</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="Added params to associative array" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added params to associative array" />
+    <MESSAGE value="Cleaned up the code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up the code" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/BinaryUtils.kt</url>
+          <line>488</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/BinaryUtils.kt</url>
+          <line>340</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

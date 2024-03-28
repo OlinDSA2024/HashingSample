@@ -41,7 +41,7 @@ class LZAlgorithm {
                 if (codeWord == null) {
                     encodedData.write(codeBook[currSequence]!!, codeWidth)
                     if (encodeABBinary) {
-                        // kludge to match Peter Schor Notes
+                        // kludge to match Peter Shor Notes
                         if (listOf(bytes[i]).toByteArray()
                                 .decodeToString() == "A"
                         ) {
@@ -57,12 +57,45 @@ class LZAlgorithm {
                         codeWidth++
                     }
                     codeBook[currSequence + listOf(bytes[i])] = codeBook.size()
-                    startPos = i+1
+                    startPos = i + 1
                 }
             }
             val currSequence = bytes.slice(startPos until bytes.size)
             encodedData.write(codeBook[currSequence]!!, codeWidth)
             return encodedData
+        }
+
+        /**
+         * Decompress the compressed Byte array
+         * @param compressed the compressed data
+         * @return the original data
+         */
+        fun decompress(compressed: ByteArray):ByteArray {
+            println("${compressed.size}")
+            val b = BinaryReader(compressed)
+            val codeBook = AssociativeArray<Int, List<Byte>>()
+            codeBook[codeBook.size()] = listOf()
+            var startPos = 0
+            var codeWidth = 1
+            var transition = 2
+            val decoded: MutableList<Byte> = mutableListOf()
+            while (!b.isDone) {
+                val codeWord = b.readInt(codeWidth)
+                try {
+                    val innovation = b.readByte()
+                    val newCode = codeBook[codeWord]!! + innovation
+                    decoded += newCode
+                    codeBook[codeBook.size()] = newCode
+                    if (codeBook.size() > transition) {
+                        transition *= 2
+                        codeWidth++
+                    }
+                } catch(e: Exception)  {
+                    decoded += codeBook[codeWord]!!
+                    break
+                }
+            }
+            return decoded.toByteArray()
         }
     }
 }
